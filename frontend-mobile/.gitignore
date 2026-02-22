@@ -1,0 +1,10 @@
+.DS_Store
+.env.local
+.env.*.local
+*.log
+node_modules/
+dist/
+build/
+.gradle
+.m2
+*.keystore

@@ -1,0 +1,14 @@
+.DS_Store
+.env.local
+.env.*.local
+*.log
+node_modules/
+dist/
+build/
+.venv
+venv/
+__pycache__/
+*.db
+.pytest_cache/
+.gradle
+.m2
