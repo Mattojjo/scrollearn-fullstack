@@ -1,143 +1,104 @@
 import { useState, useEffect } from 'react';
 import CardScroller from './components/CardScroller';
 import AddCardModal from './components/AddCardModal';
+import useCards from './hooks/useCards';
+import './App.css';
 
-const API_BASE_URL = `http://${window.location.hostname}:8001`;
-
+/**
+ * Main App Component
+ * Renders the main application with card carousel and modal
+ */
 function App() {
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { cards, loading, error, loadCards, addCard, removeCard, clearError } = useCards();
   const [showAddModal, setShowAddModal] = useState(false);
-  const [error, setError] = useState(null);
 
+  // Load cards on mount
   useEffect(() => {
     loadCards();
-  }, []);
+  }, [loadCards]);
 
-  const loadCards = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await fetch(`${API_BASE_URL}/items/`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch cards');
-      }
-      
-      const data = await response.json();
-      setCards(data);
-    } catch (error) {
-      console.error('Error loading cards:', error);
-      setError('Failed to load cards. Make sure the backend is running on port 8001.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleAddCard = async (cardData) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/items/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: cardData.title,
-          description: cardData.content
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to create card');
-      }
-
-      await loadCards();
-      setShowAddModal(false);
-    } catch (error) {
-      console.error('Error adding card:', error);
-      setError('Failed to add card');
-    }
-  };
-
-  const handleDeleteCard = async (cardId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/items/${cardId}`, {
-        method: 'DELETE'
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to delete card');
-      }
-
-      await loadCards();
-    } catch (error) {
-      console.error('Error deleting card:', error);
-      setError('Failed to delete card');
-    }
-  };
-
+  // Show loading screen
   if (loading) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-purple-600 to-blue-600">
-        <div className="text-white text-2xl font-bold">Loading...</div>
+      <div className="app-loading">
+        <div className="app-loading-text">Loading...</div>
       </div>
     );
   }
 
-  return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
-      {error && (
-        <div className="absolute top-0 left-0 right-0 z-50 bg-red-500 text-white p-4 text-center">
-          {error}
-        </div>
-      )}
-      
-      <CardScroller 
-        cards={cards} 
-        onDelete={handleDeleteCard}
-      />
-      
-      <button
-        onClick={() => {
-          setShowAddModal(true);
-        }}
-        style={{
-          position: 'fixed',
-          bottom: '32px',
-          right: '32px',
-          zIndex: 9999,
-          width: '56px',
-          height: '56px',
-          borderRadius: '50%',
-          backgroundColor: '#9333ea',
-          border: 'none',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
-          transition: 'all 0.3s ease'
-        }}
-        onMouseEnter={(e) => {
-          e.target.style.backgroundColor = '#7e22ce';
-          e.target.style.transform = 'scale(1.1)';
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.backgroundColor = '#9333ea';
-          e.target.style.transform = 'scale(1)';
-        }}
-        title="Add new card"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24" style={{ width: '24px', height: '24px' }}>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-        </svg>
-      </button>
+  /**
+   * Handle adding a new card
+   * @param {Object} cardData - The card data
+   */
+  const handleAddCard = async (cardData) => {
+    try {
+      await addCard(cardData);
+      setShowAddModal(false);
+    } catch (err) {
+      console.error('Failed to add card:', err);
+    }
+  };
 
+  /**
+   * Handle deleting a card
+   * @param {number} cardId - The card ID to delete
+   */
+  const handleDeleteCard = async (cardId) => {
+    try {
+      await removeCard(cardId);
+    } catch (err) {
+      console.error('Failed to delete card:', err);
+    }
+  };
+
+  return (
+    <div className="app-container">
+      <div className="app-main">
+        {/* Error Message */}
+        {error && (
+          <div className="app-error">
+            {error}
+            <button
+              onClick={clearError}
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                color: 'white',
+                border: 'none',
+                padding: '4px 8px',
+                borderRadius: '4px',
+                marginLeft: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
+        {/* Card Container */}
+        <div className="app-card-container">
+          {cards.length === 0 ? (
+            <div className="app-empty-state">
+              <h1>Scrollearn</h1>
+              <p>No cards yet. Add one to get started!</p>
+              <p>Click the + button in the bottom right corner</p>
+            </div>
+          ) : (
+            <CardScroller cards={cards} onDelete={handleDeleteCard} />
+          )}
+
+          {/* Add Button */}
+          <button className="app-add-button" onClick={() => setShowAddModal(true)} title="Add new card">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Modal */}
       {showAddModal && (
-        <AddCardModal 
-          onClose={() => setShowAddModal(false)}
-          onAdd={handleAddCard}
-        />
+        <AddCardModal onClose={() => setShowAddModal(false)} onAdd={handleAddCard} />
       )}
     </div>
   );

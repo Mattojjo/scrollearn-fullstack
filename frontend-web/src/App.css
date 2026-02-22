@@ -1,0 +1,121 @@
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e293b 100%);
+}
+
+.app-main {
+  position: relative;
+  width: 100%;
+  max-width: 56rem;
+}
+
+.app-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  padding: var(--spacing-lg);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-lg);
+  animation: slideDown 300ms ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-card-container {
+  position: relative;
+  background-color: var(--color-black);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-empty-state {
+  text-align: center;
+}
+
+.app-empty-state h1 {
+  font-size: var(--font-size-5xl);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-xl);
+}
+
+.app-empty-state p:first-of-type {
+  color: var(--color-gray-300);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.app-empty-state p:last-of-type {
+  color: var(--color-gray-400);
+  font-size: var(--font-size-sm);
+}
+
+.app-add-button {
+  position: absolute;
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  width: var(--size-button-lg);
+  height: var(--size-button-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-2xl);
+  transition: all var(--transition-base);
+  z-index: var(--z-button);
+}
+
+.app-add-button:hover {
+  background-color: var(--color-primary-hover);
+  transform: scale(1.1);
+}
+
+.app-add-button:active {
+  transform: scale(0.95);
+}
+
+.app-add-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.app-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
+}
+
+.app-loading-text {
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
