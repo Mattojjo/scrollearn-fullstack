@@ -1,31 +1,22 @@
 .app-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  position: relative;
   width: 100%;
-  padding: var(--spacing-md);
+  height: 100vh;
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e293b 100%);
 }
 
-.app-main {
-  position: relative;
-  width: 100%;
-  max-width: 56rem;
-}
-
 .app-error {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 100;
   background-color: var(--color-danger);
   color: var(--color-white);
   padding: var(--spacing-lg);
   text-align: center;
   border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-lg);
+  margin: var(--spacing-md);
   animation: slideDown 300ms ease-in-out;
 }
 
@@ -40,20 +31,11 @@
   }
 }
 
-.app-card-container {
-  position: relative;
-  background-color: var(--color-black);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-2xl);
-  width: 100%;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .app-empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -75,7 +57,7 @@
 }
 
 .app-add-button {
-  position: absolute;
+  position: fixed;
   bottom: var(--spacing-xl);
   right: var(--spacing-xl);
   background-color: var(--color-primary);
@@ -89,6 +71,8 @@
   box-shadow: var(--shadow-2xl);
   transition: all var(--transition-base);
   z-index: var(--z-button);
+  border: none;
+  cursor: pointer;
 }
 
 .app-add-button:hover {

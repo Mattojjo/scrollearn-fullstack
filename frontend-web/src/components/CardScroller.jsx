@@ -10,6 +10,7 @@ const CardScroller = ({ cards, onDelete }) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [scrollDirection, setScrollDirection] = useState('down');
   const containerRef = useRef(null);
 
   const MIN_SWIPE_DISTANCE = 50;
@@ -40,8 +41,10 @@ const CardScroller = ({ cards, onDelete }) => {
     const isSwipeDown = distance < -MIN_SWIPE_DISTANCE;
 
     if (isSwipeUp) {
+      setScrollDirection('up');
       goToNext();
     } else if (isSwipeDown) {
+      setScrollDirection('down');
       goToPrevious();
     }
   };
@@ -113,12 +116,21 @@ const CardScroller = ({ cards, onDelete }) => {
       <div className="card-container">
         <div className="card-wrapper">
           {/* Card */}
-          <div className="card">
-            <div className="card-content">
+          <div className={`card card-${scrollDirection}`}>
+            {/* Card Title Section */}
+            <div className="card-title-section">
               <h2>{currentCard.name}</h2>
+            </div>
+
+            {/* Card Separator */}
+            <div className="card-separator"></div>
+
+            {/* Card Description Section */}
+            <div className="card-description-section">
               <p>{currentCard.description}</p>
             </div>
 
+            {/* Card Footer */}
             <div className="card-footer">
               <span className="card-date">{new Date(currentCard.date).toLocaleDateString()}</span>
               <span className="card-icon">💡</span>
