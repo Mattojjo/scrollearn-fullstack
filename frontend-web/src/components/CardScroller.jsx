@@ -55,11 +55,11 @@ const CardScroller = ({ cards, onDelete }) => {
 
   if (cards.length === 0) {
     return (
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 relative">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Scrollearn</h1>
           <p className="text-gray-300 mb-8">No cards yet. Add one to get started!</p>
-          <p className="text-gray-400 text-sm">Tap the + button to create a card</p>
+          <p className="text-gray-400 text-sm mb-12">Tap the + button to create a card</p>
         </div>
       </div>
     );

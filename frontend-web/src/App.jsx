@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import CardScroller from './components/CardScroller';
 import AddCardModal from './components/AddCardModal';
 
-const API_BASE_URL = `http://${window.location.hostname}:8000`;
+const API_BASE_URL = `http://${window.location.hostname}:8001`;
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -28,7 +28,7 @@ function App() {
       setCards(data);
     } catch (error) {
       console.error('Error loading cards:', error);
-      setError('Failed to load cards. Make sure the backend is running on port 8000.');
+      setError('Failed to load cards. Make sure the backend is running on port 8001.');
     } finally {
       setLoading(false);
     }
@@ -99,7 +99,7 @@ function App() {
       
       <button
         onClick={() => setShowAddModal(true)}
-        className="absolute bottom-8 right-8 z-40 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg transition-all"
+        className="fixed bottom-8 right-8 z-50 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-2xl transition-all hover:scale-110"
         title="Add new card"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
