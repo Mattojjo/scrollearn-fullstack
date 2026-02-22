@@ -37,26 +37,71 @@ const AddCardModal = ({ onClose, onAdd }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+    <div 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 10000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '16px'
+      }}
+      onClick={onClose}
+    >
+      <div 
+        style={{
+          backgroundColor: 'white',
+          borderRadius: '16px',
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+          width: '100%',
+          maxWidth: '448px',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          position: 'relative'
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-white">Add New Card</h2>
+        <div style={{
+          position: 'sticky',
+          top: 0,
+          background: 'linear-gradient(to right, #9333ea, #3b82f6)',
+          padding: '16px 24px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: 'white', margin: 0 }}>Add New Card</h2>
           <button
             onClick={onClose}
-            className="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-1 transition-all"
+            style={{
+              backgroundColor: 'transparent',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '4px',
+              borderRadius: '50%',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
+            onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ width: '24px', height: '24px' }}>
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {/* Title Input */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', color: '#374151', marginBottom: '8px' }}>
               Card Title
             </label>
             <input
@@ -67,15 +112,25 @@ const AddCardModal = ({ onClose, onAdd }) => {
                 if (error) setError('');
               }}
               placeholder="Enter card title..."
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition-colors"
+              style={{
+                width: '100%',
+                padding: '8px 16px',
+                border: '2px solid #d1d5db',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontFamily: 'inherit',
+                boxSizing: 'border-box'
+              }}
+              onFocus={(e) => e.target.style.borderColor = '#9333ea'}
+              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
               maxLength={255}
             />
-            <p className="text-xs text-gray-500 mt-1">{title.length}/255</p>
+            <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px', margin: 0 }}>{title.length}/255</p>
           </div>
 
           {/* Content Textarea */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', color: '#374151', marginBottom: '8px' }}>
               Card Content
             </label>
             <textarea
@@ -86,32 +141,73 @@ const AddCardModal = ({ onClose, onAdd }) => {
               }}
               placeholder="Enter card content..."
               rows={6}
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition-colors resize-none"
+              style={{
+                width: '100%',
+                padding: '8px 16px',
+                border: '2px solid #d1d5db',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontFamily: 'inherit',
+                boxSizing: 'border-box',
+                resize: 'none'
+              }}
+              onFocus={(e) => e.target.style.borderColor = '#9333ea'}
+              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
               maxLength={1000}
             />
-            <p className="text-xs text-gray-500 mt-1">{content.length}/1000</p>
+            <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px', margin: 0 }}>{content.length}/1000</p>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="p-3 bg-red-50 border-2 border-red-200 rounded-lg">
-              <p className="text-sm text-red-600">{error}</p>
+            <div style={{ padding: '12px', backgroundColor: '#fef2f2', border: '2px solid #fecaca', borderRadius: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#991b1b', margin: 0 }}>{error}</p>
             </div>
           )}
 
           {/* Buttons */}
-          <div className="flex gap-3 pt-4">
+          <div style={{ display: 'flex', gap: '12px', paddingTop: '16px' }}>
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50"
+              style={{
+                flex: 1,
+                padding: '8px 16px',
+                border: '2px solid #d1d5db',
+                color: '#374151',
+                fontWeight: '600',
+                borderRadius: '8px',
+                backgroundColor: 'white',
+                cursor: 'pointer',
+                fontSize: '14px',
+                transition: 'all 0.3s ease',
+                opacity: loading ? 0.5 : 1,
+                pointerEvents: loading ? 'none' : 'auto'
+              }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#f3f4f6'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'white'}
               disabled={loading}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all disabled:opacity-50"
+              style={{
+                flex: 1,
+                padding: '8px 16px',
+                background: 'linear-gradient(to right, #9333ea, #3b82f6)',
+                color: 'white',
+                fontWeight: '600',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '14px',
+                transition: 'all 0.3s ease',
+                opacity: loading ? 0.5 : 1,
+                pointerEvents: loading ? 'none' : 'auto'
+              }}
+              onMouseEnter={(e) => e.target.style.filter = 'brightness(1.1)'}
+              onMouseLeave={(e) => e.target.style.filter = 'brightness(1)'}
               disabled={loading}
             >
               {loading ? 'Adding...' : 'Add Card'}

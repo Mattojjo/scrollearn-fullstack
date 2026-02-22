@@ -98,7 +98,9 @@ function App() {
       />
       
       <button
-        onClick={() => setShowAddModal(true)}
+        onClick={() => {
+          setShowAddModal(true);
+        }}
         style={{
           position: 'fixed',
           bottom: '32px',
