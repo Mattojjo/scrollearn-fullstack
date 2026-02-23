@@ -1,6 +1,6 @@
 # ScrolLearn Frontend (Web)
 
-⚡ Modern, responsive React + Vite frontend for the ScrolLearn card-based learning platform.
+⚠️ **Work in Progress / Dusty Zone** - Experimental React + Vite frontend for the ScrolLearn card-based learning platform.
 
 **Tech Stack:** React 19 • Vite 7 • Modern CSS • Responsive Design
 
@@ -54,13 +54,13 @@ http://YOUR_LOCAL_IP:5173
 
 ## 📦 Build & Deploy
 
-### Production Build
+### Build for Testing
 
 ```bash
 npm run build
 ```
 
-Output: `dist/` folder (ready for hosting)
+Output: `dist/` folder (experimental build for testing)
 
 ### Preview Build Locally
 
@@ -264,11 +264,11 @@ Check mobile layouts using browser DevTools:
 
 ## 📝 Notes
 
-- 🚀 Production builds are tree-shaken and minified
+- � Builds are optimized and minified
 - 📱 Mobile-first design approach
 - ♿ Semantic HTML for accessibility
 - 🎨 CSS custom properties for theme consistency
-- 🔐 CORS configured for local backend
+- 🔓 CORS configured (experimental - not for production)
 
 ---
 

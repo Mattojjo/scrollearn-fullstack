@@ -457,7 +457,7 @@ test('loads cards on mount', async () => {
 
 ## Deployment Architecture
 
-Production setup:
+Experimental deployment setup (work in progress):
 
 ```
 ┌────────────────────────────────────────┐

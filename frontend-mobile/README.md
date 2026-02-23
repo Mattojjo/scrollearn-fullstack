@@ -1,8 +1,8 @@
 # ScrolLearn Mobile App
 
-📱 React Native app for iOS and Android - ScrolLearn card-based learning platform.
+⚠️ **Work in Progress / Dusty Zone** - Experimental React Native app for iOS and Android
 
-**Status:** 🚀 **Coming Soon** | **Tech Stack:** React Native • Expo • TypeScript
+**Status:** Early Development | **Tech Stack:** React Native • Expo • TypeScript
 
 ---
 
@@ -299,7 +299,7 @@ The backend API URL is configured in [src/utils/api.ts](src/utils/api.ts):
 const API_BASE_URL = "http://localhost:8000";
 ````
 
-For production, update this to your backend server URL:
+For testing, update this to your backend server URL:
 
 ```typescript
 const API_BASE_URL = "https://api.yourdomain.com";
@@ -331,8 +331,8 @@ frontend-mobile/
 - `npm start` - Start the Metro bundler
 - `npm run ios` - Run on iOS simulator
 - `npm run android` - Run on Android emulator
-- `npm run build:ios` - Build iOS app for production
-- `npm run build:android` - Build Android app for production
+- `npm run build:ios` - Build iOS app for testing
+- `npm run build:android` - Build Android app for testing
 - `npm run lint` - Run ESLint
 
 ## API Integration
@@ -374,7 +374,7 @@ Clear cache and rebuild:
 npm start -- --reset-cache
 ```
 
-## Building for Production
+## Building for Testing
 
 ### iOS
 

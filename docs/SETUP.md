@@ -72,13 +72,13 @@ npm run dev
 
 App available at: `http://localhost:5173`
 
-### 3. Build for Production
+### 3. Build for Testing
 
 ```bash
 npm run build
 ```
 
-Output: `dist/` directory (ready to deploy)
+Output: `dist/` directory (experimental build)
 
 ---
 
@@ -146,11 +146,11 @@ ENVIRONMENT=development
 DEBUG=True
 ```
 
-For production with PostgreSQL:
+For testing with PostgreSQL:
 
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/scrollearn
-ENVIRONMENT=production
+ENVIRONMENT=testing
 DEBUG=False
 ```
 

@@ -8,7 +8,7 @@ Complete API reference for ScrolLearn backend.
 
 ## Authentication
 
-Currently no authentication required. Add JWT/OAuth for production.
+Currently no authentication required. (Not yet implemented - this is experimental)
 
 ## Response Format
 
@@ -124,7 +124,7 @@ DELETE /items/
 
 Response (204 No Content):
 
-Note: Development only - remove in production.
+Note: Development only - experimental feature.
 
 ---
 
@@ -294,7 +294,7 @@ fetch("http://localhost:8000/items/", {
 
 ## Rate Limiting
 
-Not currently implemented. Consider adding for production:
+Not currently implemented. Future feature:
 
 ```
 X-RateLimit-Limit: 100
@@ -374,6 +374,6 @@ Future versions might include `/api/v2/` endpoints alongside v1.
 
 ## Next Steps
 
-- Read [DEPLOYMENT.md](./DEPLOYMENT.md) for production setup
+- Read [DEPLOYMENT.md](./DEPLOYMENT.md) for experimental deployment
 - Check [ARCHITECTURE.md](./ARCHITECTURE.md) for system design
 - Review [SETUP.md](./SETUP.md) for installation

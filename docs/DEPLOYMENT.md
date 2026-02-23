@@ -1,17 +1,19 @@
 # Deployment Guide
 
-Production deployment instructions for ScrolLearn.
+⚠️ **Work in Progress / Dusty Zone** - Experimental deployment guide for ScrolLearn.
+
+Note: This is an early-stage project. Deployment to production is not recommended yet. Use for development and testing only.
 
 ## Pre-Deployment Checklist
 
 - [ ] All tests passing
 - [ ] Environment variables configured
-- [ ] Database backups enabled
+- [ ] Database backups ready
 - [ ] HTTPS configured
-- [ ] CORS allowed for production domain
+- [ ] CORS allowed for testing domains
 - [ ] Error logging setup
 - [ ] Monitoring configured
-- [ ] API authenticated (JWT/OAuth)
+- [ ] Authentication not yet required
 
 ---
 
@@ -26,7 +28,7 @@ Production deployment instructions for ScrolLearn.
 5. Set environment variables:
    ```
    DATABASE_URL=postgresql://...
-   ENVIRONMENT=production
+   ENVIRONMENT=testing
    DEBUG=False
    ```
 6. Deploy
@@ -165,7 +167,7 @@ Process:
 ```bash
 cd frontend-mobile
 
-# Build for production
+# Build for testing
 npm run build:ios
 
 # Archive in Xcode
@@ -195,18 +197,18 @@ eas build --platform android --auto-submit
 
 ## Environment Configuration
 
-### Backend Production (.env)
+### Backend Testing (.env)
 
 ```env
 DATABASE_URL=postgresql://user:password@host:5432/scrollearn
-ENVIRONMENT=production
+ENVIRONMENT=testing
 DEBUG=False
 LOG_LEVEL=INFO
 CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
 JWT_SECRET=your-secret-key-here-change-this
 ```
 
-### Web Frontend (.env.production)
+### Web Frontend (.env)
 
 ```env
 VITE_API_URL=https://api.yourdomain.com
@@ -217,7 +219,7 @@ VITE_ANALYTICS_ID=your-analytics-id
 
 ```typescript
 const ENV = {
-  production: {
+  testing: {
     apiUrl: "https://api.yourdomain.com",
     logLevel: "error",
   },
@@ -232,7 +234,7 @@ const ENV = {
 
 ## Database Setup
 
-### PostgreSQL on Production
+### PostgreSQL for Testing
 
 1. Create database:
 

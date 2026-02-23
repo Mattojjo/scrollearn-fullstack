@@ -1,5 +1,7 @@
 # ScrolLearn
 
+⚠️ **Work in Progress / Dusty Zone** - Experimental project in active development
+
 A modern full-stack learning platform with card-based flashcards. Available on web and mobile.
 
 ## Quick Start
@@ -53,20 +55,20 @@ Complete documentation available in `/docs` directory:
 - **[SETUP.md](./docs/SETUP.md)** - Installation and configuration
 - **[DEVELOPMENT.md](./docs/DEVELOPMENT.md)** - Development workflow and available scripts
 - **[API.md](./docs/API.md)** - API endpoints and examples
-- **[DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Production deployment guide
+- **[DEPLOYMENT.md](./docs/DEPLOYMENT.md)** - Experimental deployment guide (WIP)
 - **[ARCHITECTURE.md](./docs/ARCHITECTURE.md)** - System design and technical details
 
 ---
 
 ## Tech Stack
 
-| Component | Technology                       |
-| --------- | -------------------------------- |
-| Backend   | FastAPI + SQLAlchemy             |
-| Web       | React 19 + Vite                  |
-| Mobile    | React Native + Expo              |
-| Database  | SQLite (dev) / PostgreSQL (prod) |
-| Styling   | CSS Variables                    |
+| Component | Technology                          |
+| --------- | ----------------------------------- |
+| Backend   | FastAPI + SQLAlchemy                |
+| Web       | React 19 + Vite                     |
+| Mobile    | React Native + Expo                 |
+| Database  | SQLite (dev) / PostgreSQL (testing) |
+| Styling   | CSS Variables                       |
 
 ---
 
@@ -128,8 +130,8 @@ npm run backend:format      # Format Python code
 ```bash
 cd frontend-web
 npm run dev                 # Start dev server
-npm run build               # Build for production
-npm run preview             # Preview production build
+npm run build               # Build for testing
+npm run preview             # Preview build
 npm run lint                # Lint code
 npm run format              # Format code
 ```
@@ -226,12 +228,14 @@ See [API.md](./docs/API.md) for examples and detailed documentation.
 
 ## Deployment
 
-For production deployment:
+⚠️ **Experimental** - This is an early-stage project. Not recommended for production yet.
 
-1. See [DEPLOYMENT.md](./docs/DEPLOYMENT.md) for detailed instructions
+For experimental testing:
+
+1. See [DEPLOYMENT.md](./docs/DEPLOYMENT.md) for testing instructions
 2. Recommended: Render (backend), Vercel (frontend)
-3. Database: PostgreSQL (production)
-4. Cost: ~$5-10/month
+3. Database: PostgreSQL (for testing)
+4. Cost: ~$5-10/month (test tier)
 
 ---
 
@@ -305,14 +309,16 @@ More help: See [SETUP.md](./docs/SETUP.md) troubleshooting section.
 
 ## Security
 
-Current security features:
+⚠️ **Early Stage** - Limited security for experimental use only
+
+Current features:
 
 - Input validation (Pydantic)
 - SQL injection protection (SQLAlchemy ORM)
 - CORS configuration
 - HTTPS ready
 
-Production additions needed:
+Not yet implemented:
 
 - User authentication (JWT)
 - Rate limiting

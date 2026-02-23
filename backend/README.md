@@ -1,6 +1,6 @@
 # ScrolLearn Backend API
 
-🚀 Production-ready FastAPI backend for the ScrolLearn card-based learning platform.
+⚠️ **Work in Progress / Dusty Zone** - Experimental FastAPI backend for the ScrolLearn card-based learning platform.
 
 **Tech Stack:** FastAPI • SQLAlchemy • Uvicorn • Pydantic
 
@@ -100,10 +100,10 @@ curl -X POST http://localhost:8000/items/ \
 scrollearn.db          # Auto-created in project root
 ```
 
-### Production (PostgreSQL)
+### Testing (PostgreSQL)
 
 ```bash
-# Set in .env
+# Set in .env for testing with PostgreSQL
 DATABASE_URL=postgresql://user:password@localhost:5432/scrollearn
 ```
 
@@ -154,7 +154,7 @@ DEBUG=True
 # Use different port
 uvicorn app.main:app --reload --port 8001
 
-# Production mode (no reload)
+# Testing mode (no reload)
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
@@ -188,10 +188,10 @@ See `requirements.txt` for exact versions.
 ## 📝 Notes
 
 - ⚙️ Database tables auto-created on startup
-- 🔓 CORS enabled for all origins (restrict in production)
+- 🔓 CORS enabled for all origins (experimental - not for production)
 - 📖 Interactive API docs at `/docs` for testing
-- 🔐 Add authentication/authorization as needed
-- 📊 Consider adding async database driver for production
+- 🔐 Authentication/authorization not yet implemented
+- 📊 Early-stage project - optimizations needed
 
 ---
 

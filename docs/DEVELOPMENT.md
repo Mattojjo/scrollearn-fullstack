@@ -53,10 +53,10 @@ Navigate to `frontend-web/` directory:
 # Start development server with HMR
 npm run dev
 
-# Build for production
+# Build for testing (experimental)
 npm run build
 
-# Preview production build locally
+# Preview build locally
 npm run preview
 
 # Lint and format code
@@ -205,16 +205,16 @@ python -m debugpy --listen 5678 -m uvicorn app.main:app --reload
 
 ## Build Process
 
-### Web Production Build
+### Web Build for Testing
 
 ```bash
 cd frontend-web
 npm run build
 ```
 
-Output in `dist/` directory - optimized for production.
+Output in `dist/` directory - experimental build for testing.
 
-### Mobile Production Build
+### Mobile Build for Testing
 
 Android:
 
@@ -343,5 +343,5 @@ npm run clean
 ## Next Steps
 
 - Read [API.md](./API.md) for API endpoints
-- Check [DEPLOYMENT.md](./DEPLOYMENT.md) for production
+- Check [DEPLOYMENT.md](./DEPLOYMENT.md) for experimental deployment
 - Review [ARCHITECTURE.md](./ARCHITECTURE.md) for technical details
